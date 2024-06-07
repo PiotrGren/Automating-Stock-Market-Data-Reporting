@@ -2,11 +2,7 @@
 
 [EN](#english) / [PL](#polski)
 
-# Automating Stock Market Data Reporting
-
-This repository contains scripts for automating the collection, processing, and reporting of stock market data. The scripts are designed to scrape stock data, process it, and generate reports.
-
-## Repository Structure
+## Repository Structure / Struktura repozytorium
 
 ├── automat.py
 
@@ -58,6 +54,26 @@ This repository contains scripts for automating the collection, processing, and 
 
 └── readme.txt
 
+#### English
+
+# Automating Stock Market Data Reporting
+
+## Table of Contents
+
+1. [Description](#description)
+2. [Setup](#setup)
+3. [Script Overview](#script-overview)
+4. [Data Files](#data-files)
+5. [Usage](#usage)
+6. [Operation and Data Flow](#operation-and-data-flow)
+7. [Report Structure](#report-structure)
+8. [License](#license)
+9. [Contributing](#contributing)
+10. [Authors](#authors)
+
+## Description
+
+This repository contains scripts for automating the collection, processing, and reporting of stock market data. The scripts are designed to scrape stock data, process it, and generate reports in PDF format.
 
 ## Setup
 
@@ -221,9 +237,26 @@ company.csv -----------------|
 Estimate.xlsx ---------------|
 ```
 
+## Report Structure
+
+The report consists of 4 pages.
+
+#### Page 1
+
+On the first page you will find information on the company's profile, the company's upcoming events, the company's recent events, and the company's revenue and earnings estimates for the next quarter. The page uses **profile.csv** and **Estimate.xlsx** files to generate its content.
+
+#### Page 2
+On the second page is a chart of stock prices for the last day (currently for the last lines because the data was collected irregularly, the script should be improved if someone decides to collect this data continuously and very regularly). This chart is generated from the data in the **stocks_history.xlsx** file and shows stock prices over time. Underneath the chart is the company's current detailed stock market data, which is taken from the **stocks.csv** file.
+
+#### Page 3
+On page 3 is a chart of stock prices over the past year. The time series is matched with a **Prophet** machine learning model that predicts prices for the next week. To learn more check out the **history_chart()** function in the `REPORT_GENERATOR.py` file. The chart also shows the largest and smallest closing price of the last year. as well as the last closing price. Underneath the chart are the stock price value predictions for the next week, along with a 'Buy' or 'Sell' indicator. This indicator is calculated based on a moving average.
+
+#### Page 4
+On the fourth page, as additional information, there is a table of the 25 most active stock market stocks currently. This table is downloaded and generated from the **@5_most_active_stocks.csv** file.
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the LICENSE.txt file for details.
 
 ## Contributing
 
@@ -234,3 +267,218 @@ Feel free to submit issues or pull requests if you have suggestions or improveme
 Gabriela Kiwacka - Co-developer - https://github.com/GabrielaKiwacka
 
 Piotr Greń - Co-developer - github.com/PiotrGren
+
+
+
+#### Polski
+
+# Automatyzacja Raportowania Danych Giełdowych
+
+## Spis treści
+
+1. [Opis](#opis)
+2. [Instalacja](#instalacja)
+3. [Przegląd Skryptów](#przegląd-skryptów)
+4. [Pliki Danych](#pliki-danych)
+5. [Wykorzystanie](#wykorzystanie)
+6. [Działanie i Przepływ Danych](#działanie-i-przepływ-danych)
+7. [Struktura Raportu](#struktura-raportu)
+8. [Licencja](#licencja)
+9. [Wkład](#wkład)
+10. [Autorzy](#autorzy)
+
+## Opis
+
+To repozytorium zawiera skrypty do automatyzacji gromadzenia, przetwarzania i raportowania danych giełdowych. Skrypty są przeznaczone do pobierania danych giełdowych, przetwarzania ich i generowania raportów w formacie PDF.
+
+## Instalacja
+
+1. **Sklonuj repozytorium**:
+
+   ```bash
+   git clone https://github.com/PiotrGren/Automating-Stock-Market-Data-Reporting.git
+   cd Automating-Stock-Market-Data-Reporting
+   ```
+
+2. **Zainstaluj wymagane pakiety**:
+   Ensure you have `pip` installed. Run the following command to install all necessary dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Przegląd Skryptów
+
+### `automat.py`
+
+Ten skrypt automatyzuje uruchamianie skryptu scraper.py.
+
+### `company.py`
+
+Ten skrypt obsługuje przetwarzanie danych specyficznych dla firmy - a dokładniej profilu firmy.
+
+### `REPORT_GENERATOR.py`
+
+Skrypt ten generuje raporty PDF na podstawie przetworzonych danych giełdowych.
+
+### `WEBSCRAPPING/scraper.py`
+
+Skrypt ten pobiera dane giełdowe z Yahoo Finance.
+
+### `WEBSCRAPPING/Sample ML Models/Sample_ML_Model_NN.py`
+
+Ten skrypt zawiera przykładowy model sieci neuronowej do przewidywania cen akcji (nie jest w pełni rozwinięty/nie działa).
+
+### `WEBSCRAPPING/Sample ML Models/Sample_ML_Model_Prophet.py`
+
+Skrypt ten wykorzystuje bibliotekę Prophet do prognozowania cen akcji.
+
+## Pliki Danych
+
+- `Company_Profile.pdf`: Przykładowy raport PDF wygenerowany za pomocą `REPORT_GENERATOR.py`.
+- `Estimate.xlsx`: Plik Excel z szacunkami zysków i przychodów firmy z Yahoo Finance (plik jest nadpisywany za każdym razem, gdy generujemy raport).
+- `profile.csv`: Plik CSV z profilem firmy, takim jak adres, kontakt itp. (plik jest nadpisywany za każdym razem, gdy generujemy raport).
+- `FORECAST/forecast_AAPL.xlsx`: Plik Excel z prognozowanymi danymi dla Apple Inc (za każdym razem, gdy generujemy raport dla konkretnej firmy, zostanie utworzony nowy plik forcast z symbolem firmy w nazwie, jeśli plik forcast\_{ticker_symbol}.xlsx istnieje, dane zostaną do niego dołączone).
+- `WEBSCRAPPING/25_most_active_stocks.csv`: Plik CSV z 25 najbardziej aktywnymi (obecnie) akcjami.
+- `WEBSCRAPPING/25_most_active_stocks_history.xlsx`: Plik Excel z danymi historycznymi dla 25 najbardziej aktywnych akcji.
+- `WEBSCRAPPING/AAPL.csv`: Plik CSV z danymi dla Apple Inc (tylko przykładowy plik bez żadnego zastosowania w tym projekcie).
+- `WEBSCRAPPING/stocks.csv`: Plik CSV z konkretnymi danymi giełdowymi (obecnie).
+- `WEBSCRAPPING/stocks_history.xlsx`: Plik Excel z historycznymi danymi akcji (każda spółka ma własny arkusz o nazwie symbolu akcji).
+- `WEBSCRAPPING/tmp_ts.txt`: Tymczasowy plik tekstowy do przechowywania znaczników czasu.
+
+## Wykorzystanie
+
+1. **Zbieranie danych**:
+   Uruchom skrypt `WEBSCRAPPING/scraper.py`, aby jednorazowo zebrać dane giełdowe.
+
+   ```bash
+   python WEBSCRAPPING/scraper.py
+   ```
+
+   Lub uruchom skrypt `automat.py`, aby rozpocząć cykliczne i automatyczne pobieranie danych giełdowych.
+
+   ``bash
+   python automat.py
+   ```
+
+2. **Generowanie raportów**:
+   Uruchom skrypt `REPORT_GENERATOR.py`, aby wygenerować raporty.
+
+   ```bash
+   python REPORT_GENERATOR.py [ticker_symbol_here]
+   ```
+
+   Skrypt automatycznie wygeneruje raport dla wybranej spółki. Skrypt należy wywołać z argumentem wiersza poleceń, którym powinien być symbol giełdowy wybranej spółki. Przed wygenerowaniem raportu skrypt uruchamia również skrypt company.py w celu zebrania aktualnych danych na temat profilu spółki, wydarzeń z nią związanych oraz szacunkowych przychodów i zysków.
+
+3. **Trenowanie i przewidywanie cen akcji modelami nauczania maszynowego**:
+   Sprawdź przykładowe modele uczenia maszynowego do przewidywania cen akcji (pliki niedokończone/robocze).
+   **Sample_ML_Model_NN.py** - nie działa
+   **Sample_ML_Model_Prophet.py** - prosty działający model
+
+## Działanie i Przepływ Danych
+
+Głównymi skryptami projektu są `REPORT_GENERATOR.py` i `automat.py`. Pierwszy z nich służy do automatycznego generowania raportów giełdowych na podstawie zebranych danych z Yahoo Finance dla wybranej spółki. Drugi służy do automatycznego zbierania danych giełdowych z Yahoo Finance za pomocą mechanizmu webscrapingu przy użyciu bibliotek Pythona, takich jak Selenium i BeautifulSoup.
+
+### `automat.py`, `WEBSCRAPPING/scraper.py`
+
+Skrypt `automat.py` używa bibliotek schedule i subprocess Pythona do automatycznego wywoływania skryptu `WEBSCRAPPING/scraper.py`. Proces tworzy plik blokady **lockfile.txt**, który informuje, czy poprzedni proces webscrapingu został zakończony. Co 15 sekund próbuje wywołać nowy proces webscrappingu, jeśli plik lockfile.txt został już usunięty (poprzedni proces zakończył się).
+
+Skrypt `WEBSCRAPPING/scraper.py` używa 2 plików csv, 2 plików xlsx i 1 pliku txt.
+
+1. **25_most_active_stocks.csv** - przechowuje aktualne dane na temat 25 najbardziej aktywnych akcji giełdowych
+2. **stocks.csv** - przechowuje aktualne szczegółowe dane giełdowe wybranych spółek
+3. **tmp_ts.txt** - przechowuje znacznik czasu bieżącego webscrappingu
+4. **25_most_active_stocks_history.xlsx** - przechowuje historyczne dane na temat 25 najbardziej aktywnych akcji giełdowych.
+5. **stoicks_history.xlsx** - przechowuje historyczne szczegółowe dane giełdowe wybranych spółek (każda spółka ma swój własny arkusz)
+
+#### Działanie
+
+Najpierw skrypt zbiera informacje o 25 najbardziej aktywnych obecnie akcjach giełdowych. Następnie rozpoczyna zbieranie szczegółowych danych giełdowych dla każdej z 25 spółek, które zostaną uwzględnione w tym wykazie za pomocą funkcji **scrape_stock()**. Po zakończeniu skrobania ładuje rzeczywiste dane z plików csv, aby zarchiwizować je w plikach xlsx ze znacznikiem czasu przechowywanym w pliku tmp_ts.txt zawierającym znacznik czasu z ostatniego skrobania. Po zarchiwizowaniu nadpisuje bieżące pliki csv i tmp_ts.txt aktualnymi danymi i kończy działanie.
+
+#### Przepływ Danych
+
+```sh
+[PROCES WEBSCRAPPINGU]  -->   [ZAŁADOWANIE DANYCH Z PLIKÓ CSV]  -->  [ARCHIWIZACJA DANYCH W PLIKACH XLSX]  -->  [NADPISANIE PLIKÓW CSV ORAZ TIMESTAMP AKTUALNYMI DANYMI]
+```
+
+```sh
+stock.csv  --
+             | --archiwizacja-danych--> stocks_history.xlsx
+tmp_ts.txt --
+
+
+[DATA FROM WEBSCRAPPING] --nadpisanie--> stocks.csv
+
+25_most_active_stocks.csv --
+                            | --archiwizacja-danych--> 25_most_active_stocks_history.xlsx
+tmp_ts.txt                --
+
+
+[DATA FROM WEBSCRAPPING] --nadpisanie--> 25_most_active_stocks.csv
+
+[CURRENT TIME] -- nadpisanie--> tmp_ts.txt
+```
+
+### `REPORT_GENERATOR.py`
+
+#### Działanie
+
+Ten skrypt automatycznie generuje raport PDF dla wybranej spółki. Należy go wywołać z argumentem wiersza poleceń, którym powinien być symbol giełdowy wybranej spółki. Skrypt ten początkowo wywołuje skrypt `company.py` w celu zebrania najbardziej aktualnych danych na temat profilu firmy oraz szacunków jej przychodów i zysków ze strony internetowej Yahoo Finance. Następnie generuje raport dla wybranej spółki przy użyciu plików:
+
+1. **profile.csv** - przechowuje dane o profilu firmy (adres, kontakt, branża itp.)
+2. **Estimate.xslx** - przechowuje dane o szacunkowych zyskach i przychodach firmy
+3. **stocks.csv** - przechowuje aktualne szczegółowe dane giełdowe wybranych spółek (skrypt załaduje dane o spółce, dla której generujemy raport)
+4. **25_most_active_stocks.csv** - przechowuje aktualne dane o 25 najbardziej aktywnych akcjach giełdowych (informacja jako załącznik do raportu).
+
+Następnie przy użyciu funkcji **create_pdf()** i innych funkcji pomocniczych, skrypt generuje raport w formacie PDF przy użyciu biblioteki reportlab canva Python.
+
+Przykład uruchomionego skryptu (na przykład dla Apple Inc.):
+```bash
+python REPORT_GENERATOR.py AAPL
+```
+
+#### Data Flow
+
+```sh
+                                                           ---> company.csv
+[WEBBSCRAPING PROFILU FIRMY I JEJ WYDARZEŃ] --overwrite---|
+                                                           ---> Estimate.xlsx
+```
+
+```sh
+stocks.csv ------------------|
+25_most_active_stocks.csv ---|
+                             |----------> REPORT_GENERATOR.py/create_pdf() ------> [RAPORT W FORMACIE PDF]
+company.csv -----------------|
+Estimate.xlsx ---------------|
+```
+
+## Struktura Raportu
+
+Raport składa się z 4 stron.
+
+#### Strona 1
+
+Na pierwszej stronie znajdują się informacje o profilu firmy, nadchodzących wydarzeniach, ostatnich wydarzeniach oraz szacunkach przychodów i zysków firmy na następny kwartał. Strona wykorzystuje pliki **profile.csv** i **Estimate.xlsx** do wygenerowania swojej zawartości.
+
+#### Strona 2
+Na drugiej stronie znajduje się wykres cen akcji za ostatni dzień (obecnie za ostatnie wiersze, ponieważ dane były zbierane nieregularnie, skrypt powinien zostać ulepszony, jeśli ktoś zdecyduje się zbierać te dane w sposób ciągły i bardzo regularny). Ten wykres jest generowany na podstawie danych z pliku **stocks_history.xlsx** i pokazuje ceny akcji w czasie. Pod wykresem znajdują się aktualne szczegółowe dane giełdowe spółki, które są pobierane z pliku **stocks.csv**.
+
+#### Strona 3
+Na stronie 3 znajduje się wykres cen akcji w ciągu ostatniego roku. Szereg czasowy jest dopasowany do modelu uczenia maszynowego **Prophet**, który przewiduje ceny na następny tydzień. Aby dowiedzieć się więcej, sprawdź funkcję **history_chart()** w pliku `REPORT_GENERATOR.py`. Wykres pokazuje również największą i najmniejszą cenę zamknięcia z ostatniego roku, a także ostatnią cenę zamknięcia. Pod wykresem znajdują się prognozy cen akcji na następny tydzień wraz ze wskaźnikiem „Kup” lub „Sprzedaj”. Wskaźnik ten jest obliczany na podstawie średniej ruchomej.
+
+#### Strona 4
+Na czwartej stronie, jako dodatkowe informacje, znajduje się tabela 25 najbardziej aktywnych obecnie akcji giełdowych. Tabela ta jest pobierana i generowana z pliku **25_most_active_stocks.csv**.
+
+## Licencja
+
+Ten projekt jest objęty licencją MIT. Szczegóły można znaleźć w pliku LICENSE.txt.
+
+## Wkład
+
+Zachęcamy do przesyłania zgłoszeń lub pull requestów, jeśli masz sugestie dotyczące projektu lub pomysł na ulepszenia.
+
+## Autorzy
+
+Gabriela Kiwacka - Współtwórca - https://github.com/GabrielaKiwacka
+
+Piotr Greń - Współtwórca - https://github.com/PiotrGren
