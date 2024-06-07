@@ -172,11 +172,15 @@ First, the script collects information on the 25 most active stock market stocks
 stock.csv  --
              | --archiving-data--> stocks_history.xlsx
 tmp_ts.txt --
+
+
 [DATA FROM WEBSCRAPPING] --overwrite--> stocks.csv
 
 25_most_active_stocks.csv --
                             | --archiving-data--> 25_most_active_stocks_history.xlsx
 tmp_ts.txt                --
+
+
 [DATA FROM WEBSCRAPPING] --overwrite--> 25_most_active_stocks.csv
 
 [CURRENT TIME] -- overwrite--> tmp_ts.txt
