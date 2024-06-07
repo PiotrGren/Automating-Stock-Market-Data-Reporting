@@ -1,0 +1,43 @@
+# Ignore all hidden files and directories except .vscode (we want to include settings.json)
+.*
+!.gitignore
+!.vscode/
+
+# Ignore specific file types
+# (none, since we want to include csv, xlsx, py, pdf, and txt files)
+
+# Ignore Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.swo
+
+# Allow necessary files
+!*.csv
+!*.xlsx
+!*.py
+!*.pdf
+!*.txt
