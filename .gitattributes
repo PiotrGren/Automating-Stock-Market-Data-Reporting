@@ -1,0 +1,15 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Explicitly set the line endings for specific file types
+*.pdf binary
+*.xlsx binary
+
+# Ensure CSV files use LF line endings
+*.csv text eol=lf
+
+# Ensure Python files use LF line endings
+*.py text eol=lf
+
+# Ensure text files use LF line endings
+*.txt text eol=lf
