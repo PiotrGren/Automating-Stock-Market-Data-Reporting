@@ -9,30 +9,55 @@ This repository contains scripts for automating the collection, processing, and 
 ## Repository Structure
 
 ├── automat.py
+
 ├── company.py
+
 ├── Company_Profile.pdf
+
 ├── Estimate.xlsx
+
 ├── profile.csv
+
 ├── REPORT_GENERATOR.py
+
 ├── .vscode/
+
 │ └── settings.json
+
 ├── FORECAST/
+
 │ └── forecast_AAPL.xlsx
+
 ├── WEBSCRAPPING/
+
 │ ├── 25_most_active_stocks.csv
+
 │ ├── 25_most_active_stocks_history.xlsx
+
 │ ├── AAPL.csv
+
 │ ├── scraper.py
+
 │ ├── stocks.csv
+
 │ ├── stocks_history.xlsx
+
 │ ├── tmp_ts.txt
+
 │ └── Sample ML Models/
+
 │ ├── Sample_ML_Model_NN.py
+
 │ ├── Sample_ML_Model_Prophet.py
+
 └── WORKING_SAMPLE_PROJECTS/
+
 ├── PROJECT-2.py
+
 ├── PROJECT.py
+
 └── readme.txt
+
 
 ## Setup
 
